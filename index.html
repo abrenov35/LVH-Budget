@@ -416,7 +416,17 @@ async function deleteDepense(id){
 }
 
 function fmt(n){return(n||0).toLocaleString('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2})+' €'}
-function fmtDate(s){if(!s)return'';const[y,m,d]=s.split('-');return`${d}/${m}`}
+function fmtDate(s){
+
+  if(!s) return '';
+
+  const date = new Date(s);
+
+  const jour = String(date.getDate()).padStart(2,'0');
+  const mois = String(date.getMonth()+1).padStart(2,'0');
+
+  return `${jour}/${mois}`;
+}
 function diff(n,p){
   if(!p)return'';
   const d=n-p,pct=Math.round((d/p)*100);
